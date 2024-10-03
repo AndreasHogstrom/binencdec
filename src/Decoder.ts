@@ -1,7 +1,7 @@
 import Coder from "./Coder"
 
-export default class Decoder extends Coder {
-  parse(ab: ArrayBuffer, offset = 0): [Record<string, unknown>, number] {
+export default class Decoder<TObject extends Record<string, unknown>> extends Coder<TObject> {
+  parse(ab: ArrayBuffer, offset = 0): [TObject, number] {
     const obj: Record<string, unknown> = {}
     const dataView = new DataView(ab)
 
@@ -11,10 +11,10 @@ export default class Decoder extends Coder {
       offset += consumed
     }
 
-    return [obj, offset]
+    return [obj as TObject, offset]
   }
 
-  multiParse(ab: ArrayBuffer): Record<string, unknown>[] {
+  multiParse(ab: ArrayBuffer): TObject[] {
     const objs = []
     let offset = 0
 

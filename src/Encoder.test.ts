@@ -2,7 +2,11 @@ import { test, expect } from "vitest"
 import Encoder from "./Encoder";
 
 test("Make", () => {
-  const encoder = new Encoder([
+  const encoder = new Encoder<{
+    field1: number
+    field2: boolean
+    field3: number
+  }>([
     ["field1", "uint8"],
     ["field2", "bool"],
     ["field3", "int16"],
@@ -23,7 +27,11 @@ test("Make", () => {
 
 test.skip("Unknown field ignored", () => {})
 test("Multi make", () => {
-  const encoder = new Encoder([
+  const encoder = new Encoder<{
+    field1: number
+    field2: boolean
+    field3: number
+  }>([
     ["field1", "uint8"],
     ["field2", "bool"],
     ["field3", "int16"],

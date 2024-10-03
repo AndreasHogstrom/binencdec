@@ -1,7 +1,7 @@
 import Coder from "./Coder"
 
-export default class Encoder extends Coder {
-  make(obj: Record<string, unknown>): ArrayBuffer {
+export default class Encoder<TObject extends Record<string, unknown>> extends Coder<TObject> {
+  make(obj: TObject): ArrayBuffer {
     const abs: ArrayBuffer[] = []
 
     for (const [fieldName, dataType] of this.fields) {
@@ -21,7 +21,7 @@ export default class Encoder extends Coder {
     return finalDw.buffer
   }
 
-  multiMake(objs: Record<string, unknown>[]): ArrayBuffer {
+  multiMake(objs: TObject[]): ArrayBuffer {
     const abs = []
     for (const obj of objs) {
       abs.push(this.make(obj))
@@ -47,6 +47,6 @@ export default class Encoder extends Coder {
         ...acc,
         [fieldName]: dataType.randomValue()
       }
-    }, {}))
+    }, {} as TObject))
   }
 }
