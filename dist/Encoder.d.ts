@@ -1,6 +1,6 @@
 import Coder from "./Coder";
-export default class Encoder extends Coder {
-    make(obj: Record<string, unknown>): ArrayBuffer;
-    multiMake(objs: Record<string, unknown>[]): ArrayBuffer;
+export default class Encoder<TObject extends Record<string, unknown>> extends Coder<TObject> {
+    make(obj: TObject): ArrayBuffer;
+    multiMake(objs: TObject[]): ArrayBuffer;
     randomMake(): ArrayBuffer;
 }
