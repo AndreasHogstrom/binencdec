@@ -25,7 +25,7 @@ import {
   DataType,
 } from "./data-types"
 
-export default class Coder {
+export default class Coder<TObject extends Record<string, unknown>> {
   static dataTypes: Record<string, new (fieldName: string) => DataType<unknown>> = {
     "2int4": DataType_2Uint4,
     bool: DataType_Boolean,

@@ -1,11 +1,11 @@
 import Decoder from "./Decoder";
 import Encoder from "./Encoder";
 
-export function makeDecoder(schema: string): Decoder {
+export function makeDecoder<TObject extends Record<string, unknown>>(schema: string): Decoder<TObject> {
   return new Decoder(parseSchema(schema))
 }
 
-export function makeEncoder(schema: string): Encoder {
+export function makeEncoder<TObject extends Record<string, unknown>>(schema: string): Encoder<TObject> {
   return new Encoder(parseSchema(schema))
 }
 
